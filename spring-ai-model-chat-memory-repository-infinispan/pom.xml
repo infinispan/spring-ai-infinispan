@@ -44,7 +44,7 @@
         <spring-boot.version>4.1.1</spring-boot.version>
         <infinispan.version>16.0.15</infinispan.version>
 
-        <flatten-maven-plugin.version>1.5.0</flatten-maven-plugin.version>
+        <flatten-maven-plugin.version>1.8.0</flatten-maven-plugin.version>
     </properties>
 
     <dependencyManagement>
