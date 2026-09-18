@@ -3,7 +3,7 @@
 ## Tech Stack
 * **Java Version:** 17
 * **Build Tool:** Maven (Multi-module, aggregator POM — each module is self-contained)
-* **Key Frameworks:** Spring Boot 4.1, Spring AI 2.0, Infinispan 16.0
+* **Key Frameworks:** Spring Boot 4.1, Spring AI 2.0.1, Infinispan 16.0
 * **Test Frameworks:** JUnit 5, AssertJ, Testcontainers, Awaitility
 
 ## Project Architecture

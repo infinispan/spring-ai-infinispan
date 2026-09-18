@@ -16,7 +16,7 @@ Reserve Important for findings that would break behavior, cause data loss, or in
 - **Protobuf schema compatibility:** changes to the Protobuf schema must be backward compatible for existing caches
 - **Ickle query correctness:** filter expression conversion must produce valid Ickle and properly escape user input
 - **Marshalling:** any new or modified marshaller must correctly serialize/deserialize all field types
-- **Spring AI API compatibility:** changes must compile against the targeted Spring AI release (currently 2.0.0)
+- **Spring AI API compatibility:** changes must compile against the targeted Spring AI release (currently 2.0.1)
 - **Jackson 3:** this project uses `tools.jackson` packages, not `com.fasterxml.jackson`
 
 ## Cap the Nits
