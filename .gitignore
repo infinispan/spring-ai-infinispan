@@ -58,3 +58,5 @@ AGENTS.md
 .mcp.json
 gen/
 .bob
+# Maven flatten plugin
+.flattened-pom.xml

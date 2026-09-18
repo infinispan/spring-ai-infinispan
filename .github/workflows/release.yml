@@ -1,0 +1,89 @@
+name: Release
+
+on:
+  workflow_dispatch:
+    inputs:
+      branch:
+        description: "The branch to checkout when cutting the release."
+        required: true
+        default: "main"
+      version:
+        description: "Release version (e.g. 1.0.0)"
+        required: true
+      nextVersion:
+        description: "Next development version (e.g. 1.0.1-SNAPSHOT)"
+        required: true
+
+permissions:
+  contents: read
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    timeout-minutes: 30
+
+    steps:
+      - name: Checkout Source
+        uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.inputs.branch }}
+
+      - name: Set release version
+        run: |
+          mvn -B versions:set -DnewVersion=${{ github.event.inputs.version }} -DprocessAllModules=true
+          mvn -B versions:commit
+
+      - name: Set up Java for publishing to OSSRH
+        uses: actions/setup-java@v4
+        with:
+          java-version: '17'
+          distribution: 'temurin'
+          cache: 'maven'
+          server-id: central
+          server-username: MAVEN_USERNAME
+          server-password: MAVEN_PASSWORD
+          gpg-private-key: ${{ secrets.INFINISPAN_MAVEN_GPG_ARMORED }}
+          gpg-passphrase: MAVEN_GPG_PASSPHRASE
+
+      - name: Build and verify
+        run: mvn -B clean verify -DskipITs
+
+      - name: Publish to OSSRH
+        run: mvn -B deploy -DskipTests
+        env:
+          MAVEN_USERNAME: ${{ secrets.SONATYPE_CENTRAL_USERNAME }}
+          MAVEN_PASSWORD: ${{ secrets.SONATYPE_CENTRAL_PASSWORD }}
+          MAVEN_GPG_PASSPHRASE: ${{ secrets.INFINISPAN_MAVEN_GPG_PASSPHRASE }}
+
+      - name: Configure Git User
+        run: |
+          git config user.email "infinispan@infinispan.org"
+          git config user.name "Infinispan"
+
+      - name: Tag Release
+        run: |
+          git commit --no-verify -a -m "Releasing ${{ github.event.inputs.version }}"
+          git tag ${{ github.event.inputs.version }}
+
+      - name: Next Version
+        run: |
+          mvn -B versions:set -DnewVersion=${{ github.event.inputs.nextVersion }} -DprocessAllModules=true
+          mvn -B versions:commit
+          git commit --no-verify -a -m "Next version ${{ github.event.inputs.nextVersion }}"
+
+      - name: Push changes
+        uses: ad-m/github-push-action@master
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          branch: ${{ github.event.inputs.branch }}
+          tags: true
+
+      - name: Create GitHub Release
+        uses: actions/create-release@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          tag_name: ${{ github.event.inputs.version }}
+          release_name: ${{ github.event.inputs.version }}
