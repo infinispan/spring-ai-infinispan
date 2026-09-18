@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  ~ Aggregator POM - allows building all modules from the root with `mvn verify`.
+  ~ This is NOT a parent POM. Each module is independently versioned and self-contained.
+  -->
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <groupId>org.infinispan</groupId>
+    <artifactId>spring-ai-infinispan-aggregator</artifactId>
+    <version>1.0.0-SNAPSHOT</version>
+    <packaging>pom</packaging>
+
+    <name>Spring AI Infinispan (Aggregator)</name>
+    <description>Aggregator for building all Spring AI Infinispan modules together</description>
+
+    <modules>
+        <module>spring-ai-infinispan-store</module>
+        <module>spring-ai-autoconfigure-vector-store-infinispan</module>
+        <module>spring-ai-model-chat-memory-repository-infinispan</module>
+        <module>spring-ai-autoconfigure-model-chat-memory-repository-infinispan</module>
+    </modules>
+</project>
