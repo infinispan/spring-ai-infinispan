@@ -42,7 +42,7 @@
 
         <spring-ai.version>2.0.1</spring-ai.version>
         <spring-boot.version>4.1.0</spring-boot.version>
-        <infinispan.version>16.0.15</infinispan.version>
+        <infinispan.version>16.2.3</infinispan.version>
 
         <flatten-maven-plugin.version>1.5.0</flatten-maven-plugin.version>
     </properties>
