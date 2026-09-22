@@ -20,6 +20,7 @@ import io.micrometer.observation.ObservationRegistry;
 import org.infinispan.client.hotrod.RemoteCacheManager;
 
 import org.infinispan.spring.ai.vectorstore.InfinispanVectorStore;
+import org.infinispan.spring.starter.remote.InfinispanRemoteAutoConfiguration;
 import org.springframework.ai.embedding.EmbeddingModel;
 import org.springframework.ai.vectorstore.SpringAIVectorStoreTypes;
 import org.springframework.ai.vectorstore.observation.VectorStoreObservationConvention;
@@ -37,7 +38,7 @@ import org.springframework.context.annotation.Bean;
  *
  * @author Katia Aresti
  */
-@AutoConfiguration
+@AutoConfiguration(after = InfinispanRemoteAutoConfiguration.class)
 @ConditionalOnClass({ InfinispanVectorStore.class, EmbeddingModel.class, RemoteCacheManager.class })
 @ConditionalOnBean(RemoteCacheManager.class)
 @EnableConfigurationProperties(InfinispanVectorStoreProperties.class)

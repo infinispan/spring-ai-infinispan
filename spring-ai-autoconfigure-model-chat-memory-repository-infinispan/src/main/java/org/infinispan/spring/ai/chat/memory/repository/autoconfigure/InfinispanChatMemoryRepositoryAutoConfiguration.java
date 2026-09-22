@@ -19,6 +19,7 @@ package org.infinispan.spring.ai.chat.memory.repository.autoconfigure;
 import org.infinispan.client.hotrod.RemoteCacheManager;
 
 import org.infinispan.spring.ai.chat.memory.repository.InfinispanChatMemoryRepository;
+import org.infinispan.spring.starter.remote.InfinispanRemoteAutoConfiguration;
 import org.springframework.boot.autoconfigure.AutoConfiguration;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnBean;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnClass;
@@ -31,7 +32,7 @@ import org.springframework.context.annotation.Bean;
  *
  * @author Katia Aresti
  */
-@AutoConfiguration
+@AutoConfiguration(after = InfinispanRemoteAutoConfiguration.class)
 @ConditionalOnClass({ InfinispanChatMemoryRepository.class, RemoteCacheManager.class })
 @ConditionalOnBean(RemoteCacheManager.class)
 @EnableConfigurationProperties(InfinispanChatMemoryRepositoryProperties.class)
