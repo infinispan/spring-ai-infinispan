@@ -51,7 +51,7 @@ jobs:
         run: mvn -B clean verify -DskipITs
 
       - name: Publish to OSSRH
-        run: mvn -B deploy -DskipTests
+        run: mvn -B deploy -Pcommunity-release -DskipTests
         env:
           MAVEN_USERNAME: ${{ secrets.SONATYPE_CENTRAL_USERNAME }}
           MAVEN_PASSWORD: ${{ secrets.SONATYPE_CENTRAL_PASSWORD }}
