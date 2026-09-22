@@ -170,7 +170,8 @@ public class InfinispanChatMemoryRepository implements ChatMemoryRepository, Ini
 		Assert.notNull(this.remoteCache, "remoteCache must not be null");
 		Assert.hasText(conversationId, "conversationId cannot be null or empty");
 
-		String ickle = "FROM " + this.itemFullName + " c WHERE c.conversationId = :conversationId ORDER BY c.sequenceNumber ASC";
+		String ickle = "FROM " + this.itemFullName
+				+ " c WHERE c.conversationId = :conversationId ORDER BY c.sequenceNumber ASC";
 		Query<ChatMemoryItem> query = this.remoteCache.query(ickle);
 		query.setParameter("conversationId", conversationId);
 		List<ChatMemoryItem> items = query.list();
@@ -335,20 +336,15 @@ public class InfinispanChatMemoryRepository implements ChatMemoryRepository, Ini
 
 		private final RemoteCacheManager remoteCacheManager;
 
-		@Nullable
-		private String cacheName;
+		@Nullable private String cacheName;
 
-		@Nullable
-		private String packageName;
+		@Nullable private String packageName;
 
-		@Nullable
-		private String itemName;
+		@Nullable private String itemName;
 
-		@Nullable
-		private Boolean registerSchema;
+		@Nullable private Boolean registerSchema;
 
-		@Nullable
-		private Boolean createCache;
+		@Nullable private Boolean createCache;
 
 		public Builder(RemoteCacheManager remoteCacheManager) {
 			Assert.notNull(remoteCacheManager, "remoteCacheManager must not be null");

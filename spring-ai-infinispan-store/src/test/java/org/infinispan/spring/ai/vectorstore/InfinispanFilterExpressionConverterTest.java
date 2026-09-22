@@ -114,7 +114,8 @@ public class InfinispanFilterExpressionConverterTest {
 						"m0.name='status' and m0.value_int IN (1, 2, 3)", " join i.metadata m0"),
 				Arguments.of(
 						new Filter.Expression(IN, new Filter.Key("score"), new Filter.Value(List.of(1.1f, 2.2f, 3.3f))),
-						"m0.name='score' and m0.value_float IN (1.100000023841858, 2.200000047683716, 3.299999952316284)", " join i.metadata m0"),
+						"m0.name='score' and m0.value_float IN (1.100000023841858, 2.200000047683716, 3.299999952316284)",
+						" join i.metadata m0"),
 				Arguments.of(
 						new Filter.Expression(IN, new Filter.Key("score"), new Filter.Value(List.of(5.1d, 6.2d, 7.3d))),
 						"m0.name='score' and m0.value_float IN (5.1, 6.2, 7.3)", " join i.metadata m0"));
@@ -232,23 +233,23 @@ public class InfinispanFilterExpressionConverterTest {
 
 	@Test
 	public void shouldRejectMixedNumericAndStringInFilter() {
-		assertThatThrownBy(() -> this.converter.convertExpression(
-				new Filter.Expression(IN, new Filter.Key("key"), new Filter.Value(List.of(1, "text")))))
+		assertThatThrownBy(() -> this.converter
+			.convertExpression(new Filter.Expression(IN, new Filter.Key("key"), new Filter.Value(List.of(1, "text")))))
 			.isInstanceOf(IllegalArgumentException.class)
 			.hasMessageContaining("cannot mix numeric and non-numeric values");
 	}
 
 	@Test
 	public void shouldWidenFloatToDoubleInInFilter() {
-		String filter = this.converter.convertExpression(
-				new Filter.Expression(IN, new Filter.Key("score"), new Filter.Value(List.of(1.1f))));
+		String filter = this.converter
+			.convertExpression(new Filter.Expression(IN, new Filter.Key("score"), new Filter.Value(List.of(1.1f))));
 		assertThat(filter).isEqualTo("m0.name='score' and m0.value_float IN (1.100000023841858)");
 	}
 
 	@Test
 	public void shouldSelectValueFloatWhenMixedIntAndFloat() {
-		String filter = this.converter.convertExpression(
-				new Filter.Expression(IN, new Filter.Key("n"), new Filter.Value(List.of(1, 2.5))));
+		String filter = this.converter
+			.convertExpression(new Filter.Expression(IN, new Filter.Key("n"), new Filter.Value(List.of(1, 2.5))));
 		assertThat(filter).contains("m0.value_float IN (");
 	}
 

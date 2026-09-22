@@ -116,16 +116,14 @@ class InfinispanChatMemoryRepositoryIT {
 	@Test
 	void saveReplacesExistingMessages() {
 		String conversationId = "conv-5";
-		this.repository.saveAll(conversationId,
-				List.of(UserMessage.builder().text("First message").build()));
+		this.repository.saveAll(conversationId, List.of(UserMessage.builder().text("First message").build()));
 
 		List<Message> retrieved = this.repository.findByConversationId(conversationId);
 		assertThat(retrieved).hasSize(1);
 		assertThat(retrieved.get(0).getText()).isEqualTo("First message");
 
-		this.repository.saveAll(conversationId,
-				List.of(UserMessage.builder().text("Replacement message").build(),
-						AssistantMessage.builder().content("Reply").build()));
+		this.repository.saveAll(conversationId, List.of(UserMessage.builder().text("Replacement message").build(),
+				AssistantMessage.builder().content("Reply").build()));
 
 		retrieved = this.repository.findByConversationId(conversationId);
 		assertThat(retrieved).hasSize(2);
@@ -136,8 +134,7 @@ class InfinispanChatMemoryRepositoryIT {
 	@Test
 	void deleteByConversationId() {
 		String conversationId = "conv-6";
-		this.repository.saveAll(conversationId,
-				List.of(UserMessage.builder().text("To be deleted").build()));
+		this.repository.saveAll(conversationId, List.of(UserMessage.builder().text("To be deleted").build()));
 
 		assertThat(this.repository.findByConversationId(conversationId)).hasSize(1);
 
@@ -148,12 +145,9 @@ class InfinispanChatMemoryRepositoryIT {
 
 	@Test
 	void findConversationIds() {
-		this.repository.saveAll("conv-a",
-				List.of(UserMessage.builder().text("Hello from A").build()));
-		this.repository.saveAll("conv-b",
-				List.of(UserMessage.builder().text("Hello from B").build()));
-		this.repository.saveAll("conv-c",
-				List.of(UserMessage.builder().text("Hello from C").build()));
+		this.repository.saveAll("conv-a", List.of(UserMessage.builder().text("Hello from A").build()));
+		this.repository.saveAll("conv-b", List.of(UserMessage.builder().text("Hello from B").build()));
+		this.repository.saveAll("conv-c", List.of(UserMessage.builder().text("Hello from C").build()));
 
 		List<String> ids = this.repository.findConversationIds();
 		assertThat(ids).containsExactlyInAnyOrder("conv-a", "conv-b", "conv-c");
@@ -170,8 +164,8 @@ class InfinispanChatMemoryRepositoryIT {
 		String conversationId = "conv-tools";
 		AssistantMessage assistantMessage = AssistantMessage.builder()
 			.content("")
-			.toolCalls(List.of(new AssistantMessage.ToolCall("call-1", "function", "get_weather",
-					"{\"location\": \"Paris\"}")))
+			.toolCalls(List
+				.of(new AssistantMessage.ToolCall("call-1", "function", "get_weather", "{\"location\": \"Paris\"}")))
 			.build();
 
 		this.repository.saveAll(conversationId, List.of(assistantMessage));

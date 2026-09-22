@@ -45,9 +45,8 @@ public class ChatMemoryItemMarshaller implements MessageMarshaller<ChatMemoryIte
 		String toolCalls = reader.readString("toolCalls");
 		String toolResponses = reader.readString("toolResponses");
 
-		return new ChatMemoryItem(id, conversationId, messageType, content,
-				sequenceNumber != null ? sequenceNumber : 0, messageTimestamp != null ? messageTimestamp : 0L, metadata,
-				toolCalls, toolResponses);
+		return new ChatMemoryItem(id, conversationId, messageType, content, sequenceNumber != null ? sequenceNumber : 0,
+				messageTimestamp != null ? messageTimestamp : 0L, metadata, toolCalls, toolResponses);
 	}
 
 	@Override

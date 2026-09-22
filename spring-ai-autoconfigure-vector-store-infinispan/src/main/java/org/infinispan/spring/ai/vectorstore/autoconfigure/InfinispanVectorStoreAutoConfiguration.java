@@ -42,8 +42,7 @@ import org.springframework.context.annotation.Bean;
 @ConditionalOnClass({ InfinispanVectorStore.class, EmbeddingModel.class, RemoteCacheManager.class })
 @ConditionalOnBean(RemoteCacheManager.class)
 @EnableConfigurationProperties(InfinispanVectorStoreProperties.class)
-@ConditionalOnProperty(name = SpringAIVectorStoreTypes.TYPE, havingValue = "infinispan",
-		matchIfMissing = true)
+@ConditionalOnProperty(name = SpringAIVectorStoreTypes.TYPE, havingValue = "infinispan", matchIfMissing = true)
 public class InfinispanVectorStoreAutoConfiguration {
 
 	@Bean

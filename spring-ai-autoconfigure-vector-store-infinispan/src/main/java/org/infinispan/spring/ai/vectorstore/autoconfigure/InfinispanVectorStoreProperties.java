@@ -32,35 +32,25 @@ public class InfinispanVectorStoreProperties extends CommonVectorStoreProperties
 	 */
 	public static final String CONFIG_PREFIX = "spring.ai.vectorstore.infinispan";
 
-	@Nullable
-	private Boolean registerSchema;
+	@Nullable private Boolean registerSchema;
 
-	@Nullable
-	private Boolean createStore;
+	@Nullable private Boolean createStore;
 
-	@Nullable
-	private String storeName;
+	@Nullable private String storeName;
 
-	@Nullable
-	private String storeConfig;
+	@Nullable private String storeConfig;
 
-	@Nullable
-	private Integer distance;
+	@Nullable private Integer distance;
 
-	@Nullable
-	private String similarity;
+	@Nullable private String similarity;
 
-	@Nullable
-	private String schemaFileName;
+	@Nullable private String schemaFileName;
 
-	@Nullable
-	private String packageName;
+	@Nullable private String packageName;
 
-	@Nullable
-	private String itemName;
+	@Nullable private String itemName;
 
-	@Nullable
-	private String metadataItemName;
+	@Nullable private String metadataItemName;
 
 	public @Nullable String getStoreName() {
 		return this.storeName;

@@ -101,10 +101,8 @@ class InfinispanChatMemoryRepositoryAutoConfigurationIT {
 		this.contextRunner.run(context -> {
 			InfinispanChatMemoryRepository repository = context.getBean(InfinispanChatMemoryRepository.class);
 
-			repository.saveAll("conv-1",
-					List.of(UserMessage.builder().text("msg 1").build()));
-			repository.saveAll("conv-2",
-					List.of(UserMessage.builder().text("msg 2").build()));
+			repository.saveAll("conv-1", List.of(UserMessage.builder().text("msg 1").build()));
+			repository.saveAll("conv-2", List.of(UserMessage.builder().text("msg 2").build()));
 
 			List<String> ids = repository.findConversationIds();
 			assertThat(ids).containsExactlyInAnyOrder("conv-1", "conv-2");
