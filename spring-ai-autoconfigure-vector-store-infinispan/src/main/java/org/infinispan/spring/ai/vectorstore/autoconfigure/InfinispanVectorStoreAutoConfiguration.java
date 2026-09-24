@@ -18,9 +18,11 @@ package org.infinispan.spring.ai.vectorstore.autoconfigure;
 
 import io.micrometer.observation.ObservationRegistry;
 import org.infinispan.client.hotrod.RemoteCacheManager;
+import org.infinispan.commons.marshall.ProtoStreamMarshaller;
 
 import org.infinispan.spring.ai.vectorstore.InfinispanVectorStore;
 import org.infinispan.spring.starter.remote.InfinispanRemoteAutoConfiguration;
+import org.infinispan.spring.starter.remote.InfinispanRemoteCacheCustomizer;
 import org.springframework.ai.embedding.EmbeddingModel;
 import org.springframework.ai.vectorstore.SpringAIVectorStoreTypes;
 import org.springframework.ai.vectorstore.observation.VectorStoreObservationConvention;
@@ -44,6 +46,12 @@ import org.springframework.context.annotation.Bean;
 @EnableConfigurationProperties(InfinispanVectorStoreProperties.class)
 @ConditionalOnProperty(name = SpringAIVectorStoreTypes.TYPE, havingValue = "infinispan", matchIfMissing = true)
 public class InfinispanVectorStoreAutoConfiguration {
+
+	@Bean
+	@ConditionalOnMissingBean(InfinispanRemoteCacheCustomizer.class)
+	public InfinispanRemoteCacheCustomizer protoStreamMarshallerCustomizer() {
+		return builder -> builder.marshaller(new ProtoStreamMarshaller());
+	}
 
 	@Bean
 	@ConditionalOnMissingBean

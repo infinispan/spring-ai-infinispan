@@ -18,7 +18,6 @@ package org.infinispan.spring.ai.chat.memory.repository.autoconfigure;
 
 import java.util.List;
 
-import org.infinispan.commons.marshall.ProtoStreamMarshaller;
 import org.infinispan.commons.util.Version;
 import org.infinispan.spring.starter.remote.InfinispanRemoteAutoConfiguration;
 import org.infinispan.testcontainers.InfinispanContainer;
@@ -52,7 +51,6 @@ class InfinispanChatMemoryRepositoryAutoConfigurationIT {
 				InfinispanChatMemoryRepositoryAutoConfiguration.class))
 		.withPropertyValues("infinispan.remote.server-list=" + serverList(),
 				"infinispan.remote.auth-username=" + InfinispanContainer.DEFAULT_USERNAME,
-				"infinispan.remote.marshaller=" + ProtoStreamMarshaller.class.getName(),
 				"infinispan.remote.auth-password=" + InfinispanContainer.DEFAULT_PASSWORD);
 
 	@Test

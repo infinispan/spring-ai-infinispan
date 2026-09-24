@@ -19,5 +19,6 @@ docker run -p 11222:11222 -e USER="admin" -e PASS="password" quay.io/infinispan/
 infinispan.remote.server-list=127.0.0.1:11222
 infinispan.remote.auth-username=admin
 infinispan.remote.auth-password=password
-infinispan.remote.marshaller=org.infinispan.commons.marshall.ProtoStreamMarshaller
 ----
+
+NOTE: The `ProtoStreamMarshaller` is configured automatically. No marshaller property is needed.

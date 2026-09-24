@@ -26,7 +26,6 @@ import io.micrometer.observation.tck.TestObservationRegistry;
 import org.awaitility.Awaitility;
 import org.infinispan.client.hotrod.RemoteCache;
 import org.infinispan.client.hotrod.RemoteCacheManager;
-import org.infinispan.commons.marshall.ProtoStreamMarshaller;
 import org.infinispan.commons.util.Version;
 import org.infinispan.protostream.schema.Schema;
 import org.infinispan.spring.starter.remote.InfinispanRemoteAutoConfiguration;
@@ -69,9 +68,6 @@ class InfinispanVectorStoreAutoConfigurationIT {
 		.withPropertyValues("spring.ai.vectorstore.infinispan.distance=" + 10,
 				"infinispan.remote.server-list=" + serverList(),
 				"infinispan.remote.auth-username=" + InfinispanContainer.DEFAULT_USERNAME,
-				// Needs the marshalling property until fix
-				// https://github.com/infinispan/infinispan/issues/16440
-				"infinispan.remote.marshaller=" + ProtoStreamMarshaller.class.getName(),
 				"infinispan.remote.auth-password=" + InfinispanContainer.DEFAULT_PASSWORD);
 
 	List<Document> documents = List.of(

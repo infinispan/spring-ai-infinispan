@@ -17,9 +17,11 @@
 package org.infinispan.spring.ai.chat.memory.repository.autoconfigure;
 
 import org.infinispan.client.hotrod.RemoteCacheManager;
+import org.infinispan.commons.marshall.ProtoStreamMarshaller;
 
 import org.infinispan.spring.ai.chat.memory.repository.InfinispanChatMemoryRepository;
 import org.infinispan.spring.starter.remote.InfinispanRemoteAutoConfiguration;
+import org.infinispan.spring.starter.remote.InfinispanRemoteCacheCustomizer;
 import org.springframework.boot.autoconfigure.AutoConfiguration;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnBean;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnClass;
@@ -37,6 +39,12 @@ import org.springframework.context.annotation.Bean;
 @ConditionalOnBean(RemoteCacheManager.class)
 @EnableConfigurationProperties(InfinispanChatMemoryRepositoryProperties.class)
 public class InfinispanChatMemoryRepositoryAutoConfiguration {
+
+	@Bean
+	@ConditionalOnMissingBean(InfinispanRemoteCacheCustomizer.class)
+	public InfinispanRemoteCacheCustomizer protoStreamMarshallerCustomizer() {
+		return builder -> builder.marshaller(new ProtoStreamMarshaller());
+	}
 
 	@Bean
 	@ConditionalOnMissingBean
