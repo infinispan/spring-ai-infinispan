@@ -1,0 +1,34 @@
+[id='ref_chat_memory_properties-{context}']
+= Chat memory configuration properties
+
+Properties under the `spring.ai.chat.memory.repository.infinispan` prefix.
+
+[%header,cols="2,1,1,3"]
+|===
+| Property | Type | Default | Description
+
+| `cache-name`
+| String
+| `chat_memory`
+| Name of the {brandname} cache for storing messages.
+
+| `package-name`
+| String
+| `dev.spring_ai`
+| Protobuf schema package name.
+
+| `item-name`
+| String
+| `ChatMemoryItem`
+| Protobuf message name for the chat memory entry.
+
+| `register-schema`
+| Boolean
+| `true`
+| Register the Protobuf schema on {brandname} Server.
+
+| `create-cache`
+| Boolean
+| `true`
+| Create the cache on {brandname} Server if it does not exist.
+|===

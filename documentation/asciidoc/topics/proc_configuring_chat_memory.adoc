@@ -1,0 +1,43 @@
+[id='proc_configuring_chat_memory-{context}']
+= Configuring the chat memory repository
+
+Configure the {brandname} chat memory repository with Spring Boot auto-configuration or programmatically.
+
+== Using auto-configuration
+
+The chat memory repository is auto-configured when the `spring-ai-autoconfigure-model-chat-memory-repository-infinispan` module and a `RemoteCacheManager` bean are on the classpath.
+
+[source,properties]
+----
+spring.ai.chat.memory.repository.infinispan.cache-name=my-chat-memory
+----
+
+== Programmatic configuration
+
+Create an `InfinispanChatMemoryRepository` bean using the builder:
+
+[source,java]
+----
+@Bean
+public InfinispanChatMemoryRepository chatMemoryRepository(
+        RemoteCacheManager cacheManager) {
+    return InfinispanChatMemoryRepository.builder(cacheManager)
+        .cacheName("my-chat-memory")
+        .build();
+}
+----
+
+== Usage with Spring AI advisors
+
+Use the repository with `MessageChatMemoryAdvisor`:
+
+[source,java]
+----
+@Bean
+public ChatClient chatClient(ChatClient.Builder builder,
+                              InfinispanChatMemoryRepository repository) {
+    return builder
+        .defaultAdvisors(MessageChatMemoryAdvisor.builder(repository).build())
+        .build();
+}
+----

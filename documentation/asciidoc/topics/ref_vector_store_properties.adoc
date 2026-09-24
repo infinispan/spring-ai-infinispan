@@ -1,0 +1,59 @@
+[id='ref_vector_store_properties-{context}']
+= Vector store configuration properties
+
+Properties under the `spring.ai.vectorstore.infinispan` prefix.
+
+[%header,cols="2,1,1,3"]
+|===
+| Property | Type | Default | Description
+
+| `store-name`
+| String
+| `defaultStore`
+| Name of the {brandname} cache for storing embeddings.
+
+| `store-config`
+| String
+| _auto-generated_
+| XML configuration for the cache. Generated automatically if not specified.
+
+| `distance`
+| Integer
+| `3`
+| Maximum distance for kNN vector queries.
+
+| `similarity`
+| String
+| `COSINE`
+| Vector similarity metric. Supported values: `COSINE`, `L2`, `INNER_PRODUCT`.
+
+| `register-schema`
+| Boolean
+| `true`
+| Register the Protobuf schema on {brandname} Server.
+
+| `create-store`
+| Boolean
+| `true`
+| Create the cache on {brandname} Server if it does not exist.
+
+| `schema-file-name`
+| String
+| _auto-generated_
+| Protobuf schema file name on the server.
+
+| `package-name`
+| String
+| `dev.spring_ai`
+| Protobuf schema package name.
+
+| `item-name`
+| String
+| `SpringAiItem`
+| Protobuf message name for the embedding item.
+
+| `metadata-item-name`
+| String
+| `SpringAiMetadata`
+| Protobuf message name for the metadata item.
+|===

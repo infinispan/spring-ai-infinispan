@@ -1,0 +1,27 @@
+[id='proc_adding_documents-{context}']
+= Adding documents
+
+Add documents to the {brandname} vector store.
+
+.Procedure
+
+. Create documents with text and optional metadata:
++
+[source,java]
+----
+List<Document> documents = List.of(
+    new Document("Spring AI integrates with Infinispan",
+        Map.of("category", "integration")),
+    new Document("Infinispan provides vector search capabilities",
+        Map.of("category", "search", "year", 2025))
+);
+----
+
+. Add them to the vector store:
++
+[source,java]
+----
+vectorStore.add(documents);
+----
+
+The vector store computes embeddings using the configured `EmbeddingModel` and stores them in {brandname} along with the document text and metadata.

@@ -1,0 +1,5 @@
+include::{stories}/assembly_overview.adoc[leveloffset=+1]
+include::{stories}/assembly_getting_started.adoc[leveloffset=+1]
+include::{stories}/assembly_vector_store.adoc[leveloffset=+1]
+include::{stories}/assembly_chat_memory.adoc[leveloffset=+1]
+include::{stories}/assembly_metadata_filtering.adoc[leveloffset=+1]

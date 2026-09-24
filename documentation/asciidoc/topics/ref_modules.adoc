@@ -1,0 +1,21 @@
+[id='ref_modules-{context}']
+= Maven modules
+
+{spring_ai_ispn} consists of four Maven modules published under the `org.infinispan` group ID.
+
+[%header,cols="1,2"]
+|===
+| Module | Description
+
+| `spring-ai-infinispan-store`
+| Core vector store implementation with metadata filtering and Protobuf marshalling.
+
+| `spring-ai-autoconfigure-vector-store-infinispan`
+| Spring Boot auto-configuration for the vector store.
+
+| `spring-ai-model-chat-memory-repository-infinispan`
+| Chat memory repository implementation with message serialization.
+
+| `spring-ai-autoconfigure-model-chat-memory-repository-infinispan`
+| Spring Boot auto-configuration for the chat memory repository.
+|===

@@ -1,0 +1,60 @@
+name: Sync Docs
+
+on:
+  release:
+    types: [published]
+  workflow_dispatch:
+    inputs:
+      version:
+        description: "Version directory name (e.g. 1.0.0)"
+        required: true
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+
+    steps:
+      - name: Checkout Source
+        uses: actions/checkout@v4
+
+      - name: Determine version
+        id: version
+        run: |
+          if [ "${{ github.event_name }}" = "release" ]; then
+            echo "version=${{ github.event.release.tag_name }}" >> $GITHUB_OUTPUT
+          else
+            echo "version=${{ github.event.inputs.version }}" >> $GITHUB_OUTPUT
+          fi
+
+      - name: Build docs
+        uses: oraNod/asciidocjs-action@v1
+        with:
+          docs_path: documentation/asciidoc/titles
+
+      - name: Checkout infinispan.github.io
+        uses: actions/checkout@v4
+        with:
+          repository: infinispan/infinispan.github.io
+          ref: master
+          path: website
+          token: ${{ secrets.API_TOKEN_GITHUB }}
+
+      - name: Copy docs
+        run: |
+          VERSION=${{ steps.version.outputs.version }}
+          TARGET_DIR=website/docs/spring-ai/${VERSION}
+          mkdir -p ${TARGET_DIR}
+          cp documentation/asciidoc/titles/spring-ai.html ${TARGET_DIR}/spring-ai.html
+
+      - name: Push to website
+        uses: cpina/github-action-push-to-another-repository@main
+        env:
+          API_TOKEN_GITHUB: ${{ secrets.API_TOKEN_GITHUB }}
+        with:
+          source-directory: website
+          destination-github-username: infinispan
+          destination-repository-name: infinispan.github.io
+          target-branch: master
+          commit-message: "Sync Spring AI docs ${{ steps.version.outputs.version }}"

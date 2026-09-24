@@ -50,12 +50,30 @@ jobs:
       - name: Build and verify
         run: mvn -B clean verify -DskipITs
 
+      - name: Deploy to local staging
+        run: |
+          mvn -B deploy -DskipTests \
+            -DaltDeploymentRepository="local::file://${{ github.workspace }}/staging"
+
+      - name: Sign staged artifacts
+        env:
+          MAVEN_GPG_PASSPHRASE: ${{ secrets.INFINISPAN_MAVEN_GPG_PASSPHRASE }}
+        run: |
+          find staging -type f \( -name "*.jar" -o -name "*.pom" \) | while read f; do
+            gpg --batch --yes --pinentry-mode loopback \
+                --passphrase "$MAVEN_GPG_PASSPHRASE" \
+                -ab "$f"
+          done
+
       - name: Publish to OSSRH
-        run: mvn -B deploy -Pcommunity-release -DskipTests
         env:
           MAVEN_USERNAME: ${{ secrets.SONATYPE_CENTRAL_USERNAME }}
           MAVEN_PASSWORD: ${{ secrets.SONATYPE_CENTRAL_PASSWORD }}
-          MAVEN_GPG_PASSPHRASE: ${{ secrets.INFINISPAN_MAVEN_GPG_PASSPHRASE }}
+        run: |
+          mvn org.sonatype.central:central-publishing-maven-plugin:0.7.0:publish \
+            -DpublishingServerId=central \
+            -DdeploymentName="Spring AI Infinispan ${{ github.event.inputs.version }}" \
+            -DautoPublish=true
 
       - name: Configure Git User
         run: |

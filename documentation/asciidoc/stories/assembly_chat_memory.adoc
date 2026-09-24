@@ -1,0 +1,14 @@
+ifdef::context[:parent-context: {context}]
+[id='chat-memory']
+:context: chat-memory
+= Chat memory repository
+
+[role="_abstract"]
+Use {brandname} as a persistent chat memory repository for Spring AI conversational applications.
+
+include::{topics}/con_chat_memory.adoc[leveloffset=+1]
+include::{topics}/proc_configuring_chat_memory.adoc[leveloffset=+1]
+include::{topics}/ref_chat_memory_properties.adoc[leveloffset=+1]
+
+ifdef::parent-context[:context: {parent-context}]
+ifndef::parent-context[:!context:]

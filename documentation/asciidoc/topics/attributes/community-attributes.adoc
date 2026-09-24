@@ -1,0 +1,24 @@
+//Community only
+:community:
+
+//
+// Infinispan
+//
+:brandname: Infinispan
+:fullbrandname: Infinispan
+:ispn_version: 16.0
+:spring_ai_version: 2.0.1
+:spring_boot_version: 4.1.0
+
+//
+// Spring AI Infinispan
+//
+:spring_ai_ispn: Spring AI Infinispan
+:spring_ai_ispn_version: 1.0.0
+
+//
+// URLs
+//
+:javadoc_base: https://docs.spring.io/spring-ai/docs/{spring_ai_version}/api
+:github_repo: https://github.com/infinispan/spring-ai-infinispan
+:infinispan_docs: https://infinispan.org/docs/stable

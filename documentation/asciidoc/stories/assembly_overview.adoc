@@ -1,0 +1,13 @@
+ifdef::context[:parent-context: {context}]
+[id='overview']
+:context: overview
+= Overview
+
+[role="_abstract"]
+{spring_ai_ispn} provides Spring AI integration with {brandname}, offering a vector store for similarity search and a chat memory repository for conversational AI applications.
+
+include::{topics}/con_overview.adoc[leveloffset=+1]
+include::{topics}/ref_modules.adoc[leveloffset=+1]
+
+ifdef::parent-context[:context: {parent-context}]
+ifndef::parent-context[:!context:]

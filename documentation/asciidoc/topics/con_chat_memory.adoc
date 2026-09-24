@@ -1,0 +1,9 @@
+[id='con_chat_memory-{context}']
+= How the chat memory repository works
+
+The {brandname} chat memory repository stores conversation messages in an indexed {brandname} cache.
+Each message is serialized as a Protobuf entry with fields for the conversation ID, message type, content, sequence number, timestamp, metadata, tool calls, and tool responses.
+
+The repository supports all Spring AI message types: `USER`, `ASSISTANT`, `SYSTEM`, and `TOOL`.
+
+Messages are ordered by sequence number within a conversation and can be queried by conversation ID.

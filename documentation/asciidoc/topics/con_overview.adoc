@@ -1,0 +1,11 @@
+[id='con_overview-{context}']
+= What is {spring_ai_ispn}?
+
+{spring_ai_ispn} is a community integration that connects link:https://docs.spring.io/spring-ai/reference/[Spring AI] with {brandname}.
+
+It provides:
+
+* **Vector Store** — Store and search document embeddings using {brandname} vector search capabilities with Ickle query language.
+* **Chat Memory Repository** — Persist chat conversation history in {brandname} for stateful AI applications.
+
+Both components use {brandname} Hot Rod client for high-performance remote access and Protobuf-based serialization.

@@ -1,0 +1,23 @@
+[id='proc_starting_infinispan-{context}']
+= Starting {brandname} Server
+
+Start an {brandname} Server instance for your Spring AI application to connect to.
+
+.Procedure
+
+. Run {brandname} Server with Docker:
++
+[source,bash]
+----
+docker run -p 11222:11222 -e USER="admin" -e PASS="password" quay.io/infinispan/server:latest
+----
+
+. Configure the connection in your `application.properties`:
++
+[source,properties]
+----
+infinispan.remote.server-list=127.0.0.1:11222
+infinispan.remote.auth-username=admin
+infinispan.remote.auth-password=password
+infinispan.remote.marshaller=org.infinispan.commons.marshall.ProtoStreamMarshaller
+----

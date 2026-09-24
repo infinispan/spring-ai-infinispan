@@ -1,0 +1,32 @@
+[id='proc_configuring_vector_store-{context}']
+= Configuring the vector store
+
+Configure the {brandname} vector store with Spring Boot auto-configuration or programmatically.
+
+== Using auto-configuration
+
+The vector store is auto-configured when the `spring-ai-autoconfigure-vector-store-infinispan` module and a `RemoteCacheManager` bean are on the classpath.
+
+[source,properties]
+----
+spring.ai.vectorstore.infinispan.store-name=my-vectors
+spring.ai.vectorstore.infinispan.distance=3
+spring.ai.vectorstore.infinispan.similarity=COSINE
+----
+
+== Programmatic configuration
+
+Create an `InfinispanVectorStore` bean using the builder:
+
+[source,java]
+----
+@Bean
+public InfinispanVectorStore vectorStore(RemoteCacheManager cacheManager,
+                                         EmbeddingModel embeddingModel) {
+    return InfinispanVectorStore.builder(cacheManager, embeddingModel)
+        .storeName("my-vectors")
+        .distance(3)
+        .similarity("COSINE")
+        .build();
+}
+----

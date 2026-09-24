@@ -1,0 +1,13 @@
+[id='con_vector_store-{context}']
+= How the vector store works
+
+The {brandname} vector store uses Protobuf schemas to define the structure of stored embeddings.
+When the application starts, the vector store:
+
+. Builds a Protobuf schema based on the embedding model dimensions.
+. Registers the schema and marshallers with the {brandname} client.
+. Uploads the schema to {brandname} Server (configurable).
+. Creates an indexed cache for vector search (configurable).
+
+Similarity search uses the {brandname} Ickle query language with the `<->` vector distance operator.
+The store supports metadata filtering through Ickle query joins on embedded metadata fields.

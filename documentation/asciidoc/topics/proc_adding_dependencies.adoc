@@ -1,0 +1,43 @@
+[id='proc_adding_dependencies-{context}']
+= Adding dependencies
+
+Add {spring_ai_ispn} dependencies to your project.
+
+.Prerequisites
+* A Spring Boot {spring_boot_version} project.
+* An embedding model dependency (for the vector store).
+
+.Procedure
+
+. Add the {brandname} Spring Boot starter and the auto-configuration modules to your `pom.xml`:
++
+[source,xml,subs="+attributes"]
+----
+<dependency>
+    <groupId>org.infinispan</groupId>
+    <artifactId>infinispan-spring-boot4-starter-remote</artifactId>
+    <version>{ispn_version}</version>
+</dependency>
+----
+
+. For the vector store, add:
++
+[source,xml,subs="+attributes"]
+----
+<dependency>
+    <groupId>org.infinispan</groupId>
+    <artifactId>spring-ai-autoconfigure-vector-store-infinispan</artifactId>
+    <version>{spring_ai_ispn_version}</version>
+</dependency>
+----
+
+. For the chat memory repository, add:
++
+[source,xml,subs="+attributes"]
+----
+<dependency>
+    <groupId>org.infinispan</groupId>
+    <artifactId>spring-ai-autoconfigure-model-chat-memory-repository-infinispan</artifactId>
+    <version>{spring_ai_ispn_version}</version>
+</dependency>
+----

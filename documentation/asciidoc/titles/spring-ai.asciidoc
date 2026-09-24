@@ -1,0 +1,17 @@
+:toc2:
+:icons: font
+:toclevels: 4
+:sectnums:
+:sectanchors:
+:docinfo: private-head,private-footer
+
+:topics: ../topics
+:stories: ../stories
+:imagesdir: {topics}/images
+
+include::{topics}/attributes/community-attributes.adoc[]
+
+[id='spring_ai_infinispan']
+= {spring_ai_ispn} Guide
+
+include::stories.adoc[]

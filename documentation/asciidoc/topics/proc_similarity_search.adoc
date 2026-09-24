@@ -1,0 +1,44 @@
+[id='proc_similarity_search-{context}']
+= Performing similarity search
+
+Search for documents similar to a query using the {brandname} vector store.
+
+.Procedure
+
+. Perform a basic similarity search:
++
+[source,java]
+----
+List<Document> results = vectorStore.similaritySearch(
+    SearchRequest.builder()
+        .query("vector search")
+        .topK(5)
+        .build()
+);
+----
+
+. Search with a similarity threshold:
++
+[source,java]
+----
+List<Document> results = vectorStore.similaritySearch(
+    SearchRequest.builder()
+        .query("vector search")
+        .topK(5)
+        .similarityThreshold(0.7)
+        .build()
+);
+----
+
+. Search with metadata filters:
++
+[source,java]
+----
+List<Document> results = vectorStore.similaritySearch(
+    SearchRequest.builder()
+        .query("vector search")
+        .topK(5)
+        .filterExpression("category == 'integration'")
+        .build()
+);
+----

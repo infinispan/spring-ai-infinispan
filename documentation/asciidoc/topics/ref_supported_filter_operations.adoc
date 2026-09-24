@@ -1,0 +1,61 @@
+[id='ref_supported_filter_operations-{context}']
+= Supported filter operations
+
+The {brandname} vector store supports the following Spring AI filter expression operations.
+
+[%header,cols="1,2,2"]
+|===
+| Operation | Expression | Example
+
+| Equals
+| `==`
+| `country == 'BG'`
+
+| Not equals
+| `!=`
+| `status != 'active'`
+
+| Greater than
+| `>`
+| `year > 2020`
+
+| Greater or equal
+| `>=`
+| `score >= 4.5`
+
+| Less than
+| `<`
+| `price < 100`
+
+| Less or equal
+| `\<=`
+| `rating \<= 3`
+
+| In
+| `in`
+| `country in ['BG', 'NL']`
+
+| Not in
+| `not in`
+| `status not in ['deleted']`
+
+| Is null
+| `IS NULL`
+| `year IS NULL`
+
+| Is not null
+| `IS NOT NULL`
+| `year IS NOT NULL`
+
+| And
+| `&&`
+| `country == 'BG' && year == 2020`
+
+| Or
+| `\|\|`
+| `country == 'BG' \|\| country == 'NL'`
+
+| Not
+| `NOT(...)`
+| `NOT(country == 'BG')`
+|===

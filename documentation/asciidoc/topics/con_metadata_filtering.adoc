@@ -1,0 +1,9 @@
+[id='con_metadata_filtering-{context}']
+= How metadata filtering works
+
+The {brandname} vector store supports Spring AI filter expressions for narrowing similarity search results based on document metadata.
+
+Metadata is stored as embedded Protobuf messages within each document entry, with typed fields for strings, integers, floats, booleans, and dates.
+Filter expressions are translated to {brandname} Ickle queries with metadata joins.
+
+Date strings in ISO-8601 format (`yyyy-MM-dd'T'HH:mm:ss'Z'`) are automatically normalized to `Date` objects for consistent filtering.
