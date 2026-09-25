@@ -6,7 +6,7 @@
 
     <groupId>org.infinispan</groupId>
     <artifactId>spring-ai-infinispan-store</artifactId>
-    <version>1.0.0</version>
+    <version>1.0.1-SNAPSHOT</version>
     <packaging>jar</packaging>
 
     <name>Spring AI Vector Store - Infinispan</name>
