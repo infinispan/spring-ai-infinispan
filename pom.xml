@@ -10,7 +10,7 @@
 
     <groupId>org.infinispan</groupId>
     <artifactId>spring-ai-infinispan-aggregator</artifactId>
-    <version>1.0.0-SNAPSHOT</version>
+    <version>1.0.0</version>
     <packaging>pom</packaging>
 
     <name>Spring AI Infinispan (Aggregator)</name>
