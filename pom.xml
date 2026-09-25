@@ -16,6 +16,11 @@
     <name>Spring AI Infinispan (Aggregator)</name>
     <description>Aggregator for building all Spring AI Infinispan modules together</description>
 
+    <properties>
+        <maven.deploy.skip>true</maven.deploy.skip>
+        <maven.install.skip>true</maven.install.skip>
+    </properties>
+
     <modules>
         <module>spring-ai-infinispan-store</module>
         <module>spring-ai-autoconfigure-vector-store-infinispan</module>
