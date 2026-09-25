@@ -37,7 +37,7 @@ jobs:
         uses: actions/checkout@v4
         with:
           repository: infinispan/infinispan.github.io
-          ref: master
+          ref: develop
           path: website
           token: ${{ secrets.API_TOKEN_GITHUB }}
 
@@ -56,5 +56,5 @@ jobs:
           source-directory: website
           destination-github-username: infinispan
           destination-repository-name: infinispan.github.io
-          target-branch: master
+          target-branch: develop
           commit-message: "Sync Spring AI docs ${{ steps.version.outputs.version }}"
