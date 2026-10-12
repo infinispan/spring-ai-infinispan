@@ -1,3 +1,5 @@
+= Spring AI Infinispan
+
 include::{stories}/assembly_overview.adoc[leveloffset=+1]
 include::{stories}/assembly_getting_started.adoc[leveloffset=+1]
 include::{stories}/assembly_vector_store.adoc[leveloffset=+1]

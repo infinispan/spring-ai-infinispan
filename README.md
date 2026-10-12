@@ -1,5 +1,14 @@
 # Spring AI Infinispan
 
+[![Version](https://img.shields.io/maven-central/v/org.infinispan/spring-ai-infinispan-store?logo=apache-maven&style=for-the-badge)](https://central.sonatype.com/artifact/org.infinispan/spring-ai-infinispan-store/versions)
+![Supported JVM Versions](https://img.shields.io/badge/JVM-17--25-brightgreen.svg?style=for-the-badge&logo=openjdk)
+[![Commits](https://img.shields.io/github/commit-activity/m/infinispan/spring-ai-infinispan.svg?label=commits&style=for-the-badge&logo=git&logoColor=white)](https://github.com/infinispan/spring-ai-infinispan/pulse)
+[![License](https://img.shields.io/github/license/infinispan/spring-ai-infinispan?style=for-the-badge&logo=apache)](https://www.apache.org/licenses/LICENSE-2.0)
+[![Project Chat](https://img.shields.io/badge/zulip-join_chat-pink.svg?style=for-the-badge&logo=zulip)](https://infinispan.zulipchat.com/)
+[![GitHub Stars](https://img.shields.io/github/stars/infinispan/spring-ai-infinispan?style=for-the-badge&logo=github&color=DAA520)](https://github.com/infinispan/spring-ai-infinispan/stargazers)
+
+⭐ **If you use Spring AI with Infinispan, consider starring this repo!** ⭐
+
 Spring AI integration for [Infinispan](https://infinispan.org/), providing vector store and chat memory repository implementations.
 
 Infinispan is an open-source in-memory distributed database that offers flexible deployment options and robust capabilities for storing, managing, and processing data.
