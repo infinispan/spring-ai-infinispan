@@ -40,8 +40,8 @@
         <maven.compiler.target>17</maven.compiler.target>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 
-        <spring-ai.version>2.0.1</spring-ai.version>
-        <spring-boot.version>4.1.1</spring-boot.version>
+        <spring-ai.version>2.0.2</spring-ai.version>
+        <spring-boot.version>4.1.2</spring-boot.version>
         <infinispan.version>16.0.15</infinispan.version>
 
         <flatten-maven-plugin.version>1.8.0</flatten-maven-plugin.version>
@@ -188,7 +188,7 @@
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-surefire-plugin</artifactId>
-                <version>3.6.0</version>
+                <version>3.6.1</version>
                 <configuration>
                     <excludes>
                         <exclude>**/*IT.java</exclude>
@@ -198,7 +198,7 @@
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-failsafe-plugin</artifactId>
-                <version>3.6.0</version>
+                <version>3.6.1</version>
                 <executions>
                     <execution>
                         <goals>
